@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fa2c4248-114f-4253-8e19-49a6a496bd89" name="Default Changelist" comment="" />
+    <list default="true" id="fa2c4248-114f-4253-8e19-49a6a496bd89" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lesson3_logicsticregresion/logistic.py" beforeDir="false" afterPath="$PROJECT_DIR$/lesson3_logicsticregresion/logistic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lesson3_logicsticregresion/negatives.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lesson3_logicsticregresion/negatives.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lesson3_logicsticregresion/neutrals.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lesson3_logicsticregresion/neutrals.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lesson3_logicsticregresion/positives.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lesson3_logicsticregresion/positives.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,7 +21,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1Y1Ytqd3yRSEWvfCiZdUWccFljm" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -22,6 +33,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lesson3_logicsticregresion" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
@@ -64,6 +76,9 @@
       <module name="mlp" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/lesson3_logicsticregresion" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -173,7 +188,8 @@
       <workItem from="1583263564562" duration="14964000" />
       <workItem from="1583327942772" duration="95000" />
       <workItem from="1583345916270" duration="1915000" />
-      <workItem from="1583862349640" duration="19713000" />
+      <workItem from="1583862349640" duration="22130000" />
+      <workItem from="1584467439157" duration="1136000" />
     </task>
     <servers />
   </component>
@@ -193,54 +209,54 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="703" y="264" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1583873260999" />
-    <state width="1493" height="261" key="GridCell.Tab.0.bottom" timestamp="1583879913986">
+    <state width="1493" height="261" key="GridCell.Tab.0.bottom" timestamp="1584030624187">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1583879913986" />
-    <state width="1493" height="261" key="GridCell.Tab.0.center" timestamp="1583879913986">
+    <state width="1493" height="261" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1584030624187" />
+    <state width="1493" height="261" key="GridCell.Tab.0.center" timestamp="1584030624187">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1583879913986" />
-    <state width="1493" height="261" key="GridCell.Tab.0.left" timestamp="1583879913986">
+    <state width="1493" height="261" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1584030624187" />
+    <state width="1493" height="261" key="GridCell.Tab.0.left" timestamp="1584030624187">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1583879913986" />
-    <state width="1493" height="261" key="GridCell.Tab.0.right" timestamp="1583879913986">
+    <state width="1493" height="261" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1584030624187" />
+    <state width="1493" height="261" key="GridCell.Tab.0.right" timestamp="1584030624187">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1583879913986" />
-    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1583879913987">
+    <state width="1493" height="261" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1584030624187" />
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1584030624188">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1583879913987" />
-    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1583879913986">
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1584030624188" />
+    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1584030624188">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1583879913986" />
-    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1583879913986">
+    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1584030624188" />
+    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1584030624188">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1583879913986" />
-    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1583879913986">
+    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1584030624187" />
+    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1584030624188">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1583879913986" />
+    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1584030624188" />
     <state x="277" y="54" key="SettingsEditor" timestamp="1583873817346">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="54" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1583873817346" />
-    <state width="775" height="419" key="XDebugger.FullValuePopup" timestamp="1583876386970">
+    <state width="775" height="419" key="XDebugger.FullValuePopup" timestamp="1583906644887">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="775" height="419" key="XDebugger.FullValuePopup/0.0.1536.824@0.0.1536.824" timestamp="1583876386970" />
+    <state width="775" height="419" key="XDebugger.FullValuePopup/0.0.1536.824@0.0.1536.824" timestamp="1583906644887" />
     <state x="281" y="117" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1" timestamp="1583873843506">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="281" y="117" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1/0.0.1536.824@0.0.1536.824" timestamp="1583873843506" />
-    <state x="465" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1583863004929">
+    <state x="465" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1584467461508">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1583863004929" />
+    <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1584467461508" />
     <state x="349" y="67" key="editAsTableFormatDialogDimension" timestamp="1582663634179">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
