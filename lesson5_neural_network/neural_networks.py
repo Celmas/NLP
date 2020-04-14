@@ -1,6 +1,5 @@
 from collections import Counter
 import math
-import tensorflow
 from itertools import islice
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Activation
