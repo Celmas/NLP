@@ -134,9 +134,10 @@ print("---End getting vectors---")
 # Настраиваем нейронку
 model = Sequential()
 model.add(Dense(512, input_shape=(500,)))
-model.add(Activation('relu'))
+model.add(Dense(512))
 model.add(Dropout(0.5))
 model.add(Activation('softmax'))
+model.add(Dense(512))
 
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy', f1_m, precision_m, recall_m])
 print("---TRAINING---")
