@@ -58,7 +58,7 @@ vocabulary, test_bag_of_words = get_vocab_and_bag_of_words_vectors(test_data.val
 
 # Тренируем модель
 print("---Train---")
-svc = LinearSVC(max_iter=10000)
+svc = LinearSVC(max_iter=60000)
 svc.fit(bag_of_words, df['label'])
 
 # Применяем модель к текстовым текстам
