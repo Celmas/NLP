@@ -110,24 +110,29 @@ test_data = df[df['title'].isin(my_reviews)]
 df = filter_by_reviews_title(df, my_reviews)
 
 print("---Begin normalization---")
+# Нормализуем тренировон=чные и тестовые тесты
 normalized_texts_train = get_notmalized_texts(df)
 normalized_texts_predict = get_notmalized_texts(test_data)
 print("---End normalization---")
 
 print("---Begin computing tfidf---")
+# Считаем tf-idf для текстов
 tfidf_train = compute_tfidf(normalized_texts_train)
 tfidf_predict = compute_tfidf(normalized_texts_predict)
 print("---End computing tfidf---")
 
+# Определяем топ 500 слов
 freq = compute_frequency(normalized_texts_train)
 freq = {k: v for k, v in sorted(freq.items(), key=lambda item: item[1], reverse=True)}
 freq = dict(islice(freq.items(), 0, 500))
 
 print("---Begin getting vectors---")
+# Получаем вектора для тренировки нейронной сети и для предсказания
 x_train_vector = get_tfidf_vector(tfidf_train, freq)
 y_train_vector = get_tfidf_vector(tfidf_predict, freq)
 print("---End getting vectors---")
 
+# Настраиваем нейронку
 model = Sequential()
 model.add(Dense(512, input_shape=(500,)))
 model.add(Activation('relu'))
@@ -136,8 +141,10 @@ model.add(Activation('softmax'))
 
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy', f1_m, precision_m, recall_m])
 print("---TRAINING---")
+# Тренируем
 model.fit(numpy.array(x_train_vector), numpy.array(df[['label']]), epochs=10, batch_size=32)
 print("---PREDICT---")
+# Предсказываем
 loss, accuracy, f1_score, precision, recall = model.evaluate(y_train_vector, test_data['label'], verbose=0)
 print("Loss:", loss)
 print("Accuracy:", accuracy)
