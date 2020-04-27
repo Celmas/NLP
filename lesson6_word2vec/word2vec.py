@@ -5,6 +5,7 @@ import numpy as np
 import gensim.models
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import precision_recall_fscore_support
+from nltk.corpus import stopwords
 
 
 def make_feature_vec(words, model, num_features):
@@ -33,8 +34,12 @@ def get_normal_form(text):
     analyzer = pymorphy2.MorphAnalyzer()
     normalized_text = []
     tokens = nltk.word_tokenize(text)
+    puncto = [',', '.', ':', '?', '«', '»', '-', '(', ')', '!', '\'', '—', ';', '”', '...']
     for token in tokens:
+        if token in puncto: continue
         normalized_text.append(analyzer.parse(token)[0].normal_form)
+    stops = set(stopwords.words("russian"))
+    normalized_text = [w for w in normalized_text if not w in stops]
     return normalized_text
 
 
