@@ -60,6 +60,7 @@ for row in data["value"]:
 tokenizer = Tokenizer(num_words=189193)
 print("Fit on texts")
 tokenizer.fit_on_texts(data["word"])
+vocab_size = tokenizer.word_index + 1
 
 # Считываем все отзывы
 df = pandas.read_csv("reviews.csv", encoding="utf-8")
@@ -79,25 +80,28 @@ df["text"] = tokenizer.texts_to_sequences(df["text"])
 
 # дополняем отзывы до длины в 300
 print("pad_sequences")
-reviews_train_prepared = pad_sequences(test_data["text"].to_numpy(), maxlen=300, padding='post')
-reviews_test_prepared = pad_sequences(df["text"].to_numpy(), maxlen=300, padding='post')
+maxlen = 300
+reviews_train_prepared = pad_sequences(test_data["text"].to_numpy(), maxlen=maxlen, padding='post')
+reviews_test_prepared = pad_sequences(df["text"].to_numpy(), maxlen=maxlen, padding='post')
 print("to_categorical")
 # переводим наши классы(-1 0 1) в категорийные
-labels_train_prepared = keras.utils.to_categorical(test_data["label"], 3)
-labels_test_prepared = keras.utils.to_categorical(df["label"], 3)
+num_classes = 3
+labels_train_prepared = keras.utils.to_categorical(test_data["label"], num_classes)
+labels_test_prepared = keras.utils.to_categorical(df["label"], num_classes)
 
 # создаем эмбеддинг матрицу
 print("Embeding")
-embedding_matrix = get_embedding_matrix(data, tokenizer.word_index, 300)
+embedding_dim = 300
+embedding_matrix = get_embedding_matrix(data, tokenizer.word_index, embedding_dim)
 
 # имплементируем сверточную нейронку
 print("Sequantial")
 model = Sequential()
-model.add(Embedding(141374, 300, weights=[embedding_matrix], input_length=300, trainable=False))
-model.add(Conv1D(300, 3))
+model.add(Embedding(vocab_size, embedding_dim, weights=[embedding_matrix], input_length=maxlen, trainable=False))
+model.add(Conv1D(embedding_dim, 3))
 model.add(Activation("relu"))
 model.add(GlobalMaxPool1D())
-model.add(Dense(9))
+model.add(Dense(num_classes))
 model.add(Activation('softmax'))
 model.compile(metrics=["accuracy"], optimizer='adam', loss='binary_crossentropy')
 
