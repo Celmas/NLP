@@ -57,7 +57,7 @@ for row in data["value"]:
     data["value"][i] = row.split(" ")
     i += 1
 
-tokenizer = Tokenizer(num_words=189193)
+tokenizer = Tokenizer(num_words=len(data.word))
 print("Fit on texts")
 tokenizer.fit_on_texts(data["word"])
 
@@ -109,7 +109,7 @@ model.compile(metrics=["accuracy"], optimizer='adam', loss='binary_crossentropy'
 print("Fit")
 # model.fit(reviews_train_prepared, labels_train_prepared, epochs=10, verbose=False)
 # model.fit(reviews_train_prepared, labels_train_prepared, epochs=20, verbose=False)
-model.fit(reviews_train_prepared, labels_train_prepared, epochs=30, verbose=False)
+model.fit(reviews_train_prepared, labels_train_prepared, epochs=30, batch_size=128, verbose=False)
 
 # предсказываем
 print("Predict")
