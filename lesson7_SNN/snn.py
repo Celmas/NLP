@@ -60,7 +60,6 @@ for row in data["value"]:
 tokenizer = Tokenizer(num_words=189193)
 print("Fit on texts")
 tokenizer.fit_on_texts(data["word"])
-vocab_size = tokenizer.word_index + 1
 
 # Считываем все отзывы
 df = pandas.read_csv("reviews.csv", encoding="utf-8")
@@ -77,6 +76,7 @@ df = filter_by_reviews_title(df, my_reviews)
 print("texts_to_sequences")
 test_data["text"] = tokenizer.texts_to_sequences(test_data["text"])
 df["text"] = tokenizer.texts_to_sequences(df["text"])
+vocab_size = tokenizer.word_index + 1
 
 # дополняем отзывы до длины в 300
 print("pad_sequences")
