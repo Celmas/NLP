@@ -8,9 +8,7 @@ from keras.preprocessing.text import Tokenizer
 from keras.layers import Dense
 from keras.models import Sequential
 from keras.layers import Embedding
-from keras.layers import Conv1D
-from keras.layers import Activation
-from keras.layers import GlobalMaxPool1D
+from keras.layers import LSTM
 from nltk.corpus import stopwords
 from sklearn.metrics import classification_report
 
@@ -70,27 +68,27 @@ my_reviews = ["Гладиатор", "Начало", "Помни"]
 
 # Отделяем тестовые отзывы
 test_data = df[df['title'].isin(my_reviews)]
-df = filter_by_reviews_title(df, my_reviews)
+train_data = filter_by_reviews_title(df, my_reviews)
 
 # кодируем отзывы
 print("texts_to_sequences")
 test_data["text"] = tokenizer.texts_to_sequences(test_data["text"])
-df["text"] = tokenizer.texts_to_sequences(df["text"])
+train_data["text"] = tokenizer.texts_to_sequences(train_data["text"])
 vocab_size = len(tokenizer.word_index) + 1
 
 # дополняем отзывы до длины в 300
 print("pad_sequences")
-maxlen = 300
-reviews_train_prepared = pad_sequences(test_data["text"].to_numpy(), maxlen=maxlen, padding='post')
-reviews_test_prepared = pad_sequences(df["text"].to_numpy(), maxlen=maxlen, padding='post')
+maxlen = 600
+reviews_test_prepared = pad_sequences(test_data["text"].to_numpy(), maxlen=maxlen, padding='post')
+reviews_train_prepared = pad_sequences(train_data["text"].to_numpy(), maxlen=maxlen, padding='post')
 print("to_categorical")
 # переводим наши классы(-1 0 1) в категорийные
 num_classes = 3
-labels_train_prepared = keras.utils.to_categorical(test_data["label"], num_classes)
-labels_test_prepared = keras.utils.to_categorical(df["label"], num_classes)
+labels_test_prepared = keras.utils.to_categorical(test_data["label"], num_classes)
+labels_train_prepared = keras.utils.to_categorical(train_data["label"], num_classes)
 
 # создаем эмбеддинг матрицу
-print("Embeding")
+print("Embedding")
 embedding_dim = 300
 embedding_matrix = get_embedding_matrix(data, tokenizer.word_index, embedding_dim)
 
@@ -98,18 +96,36 @@ embedding_matrix = get_embedding_matrix(data, tokenizer.word_index, embedding_di
 print("Sequantial")
 model = Sequential()
 model.add(Embedding(vocab_size, embedding_dim, weights=[embedding_matrix], input_length=maxlen, trainable=False))
-model.add(Conv1D(embedding_dim, 3))
-model.add(Activation("relu"))
-model.add(GlobalMaxPool1D())
-model.add(Dense(num_classes))
-model.add(Activation('softmax'))
-model.compile(metrics=["accuracy"], optimizer='adam', loss='binary_crossentropy')
+model.add(LSTM(300, dropout=0.2, recurrent_dropout=0.2))
+model.add(Dense(num_classes, activation='sigmoid'))
+
+model.compile(loss='binary_crossentropy',
+              optimizer='adam',
+              metrics=['accuracy'])
+
+print(model.summary())
+
+batch_size = 64
+epochs = 6
 
 # тренируем
 print("Fit")
-# model.fit(reviews_train_prepared, labels_train_prepared, epochs=10, verbose=False)
-# model.fit(reviews_train_prepared, labels_train_prepared, epochs=20, verbose=False)
-model.fit(reviews_train_prepared, labels_train_prepared, epochs=30, batch_size=128, verbose=False)
+model.fit(reviews_train_prepared, labels_train_prepared,
+          batch_size=batch_size,
+          epochs=epochs,
+          validation_data=(reviews_test_prepared, labels_test_prepared))
+
+score = model.evaluate(reviews_train_prepared, labels_train_prepared,
+                       batch_size=batch_size, verbose=1)
+print()
+print(u'Оценка теста: {}'.format(score[0]))
+print(u'Оценка точности модели: {}'.format(score[1]))
+
+score = model.evaluate(reviews_test_prepared, labels_test_prepared,
+                       batch_size=batch_size, verbose=1)
+print()
+print(u'Оценка теста: {}'.format(score[0]))
+print(u'Оценка точности модели: {}'.format(score[1]))
 
 # предсказываем
 print("Predict")
