@@ -66,11 +66,12 @@ my_reviews = ["Гладиатор", "Начало", "Помни"]
 
 # Отделяем тестовые отзывы
 test_data = df[df['title'].isin(my_reviews)]
-print("Fit on texts")
-unique_words = np.unique(reduce(np.operator.add, test_data["text"]))
-tokenizer = Tokenizer(num_words=len(unique_words))
-tokenizer.fit_on_texts(test_data["text"])
 train_data = filter_by_reviews_title(df, my_reviews)
+
+print("Fit on texts")
+unique_words = np.unique(reduce(np.operator.add, train_data["text"]))
+tokenizer = Tokenizer(num_words=len(unique_words))
+tokenizer.fit_on_texts(train_data["text"])
 
 # кодируем отзывы
 print("texts_to_sequences")
