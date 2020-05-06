@@ -11,6 +11,7 @@ from keras.layers import Embedding
 from keras.layers import LSTM
 from nltk.corpus import stopwords
 from sklearn.metrics import classification_report
+from functools import reduce
 
 
 def get_normal_form(text):
@@ -55,9 +56,6 @@ for row in data["value"]:
     data["value"][i] = row.split(" ")
     i += 1
 
-tokenizer = Tokenizer(num_words=len(data.word))
-print("Fit on texts")
-tokenizer.fit_on_texts(data["word"])
 
 # Считываем все отзывы
 df = pandas.read_csv("reviews.csv", encoding="utf-8")
@@ -68,6 +66,10 @@ my_reviews = ["Гладиатор", "Начало", "Помни"]
 
 # Отделяем тестовые отзывы
 test_data = df[df['title'].isin(my_reviews)]
+print("Fit on texts")
+unique_words = np.unique(reduce(np.operator.add, test_data["text"]))
+tokenizer = Tokenizer(num_words=len(unique_words))
+tokenizer.fit_on_texts(test_data["text"])
 train_data = filter_by_reviews_title(df, my_reviews)
 
 # кодируем отзывы
@@ -78,7 +80,7 @@ vocab_size = len(tokenizer.word_index) + 1
 
 # дополняем отзывы до длины в 300
 print("pad_sequences")
-maxlen = 600
+maxlen = 300
 reviews_test_prepared = pad_sequences(test_data["text"].to_numpy(), maxlen=maxlen, padding='post')
 reviews_train_prepared = pad_sequences(train_data["text"].to_numpy(), maxlen=maxlen, padding='post')
 print("to_categorical")
@@ -106,7 +108,7 @@ model.compile(loss='binary_crossentropy',
 print(model.summary())
 
 batch_size = 64
-epochs = 6
+epochs = 30
 
 # тренируем
 print("Fit")
